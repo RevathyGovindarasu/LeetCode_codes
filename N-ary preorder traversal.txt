@@ -1,0 +1,19 @@
+class Solution {
+    public List<Integer> preorder(Node root) {
+        Stack<Node> stack = new Stack<>();
+        List<Integer> list = new ArrayList<>();
+        if(root==null) return list;
+        stack.push(root);
+        while(!stack.isEmpty())
+        {
+            Node current = stack.pop();
+            list.add(current.val);
+            for(int i=current.children.size()-1;i>=0;i--)
+            {
+                stack.push(current.children.get(i));
+            }
+        }
+        
+        return list;
+    }
+}
