@@ -1,0 +1,26 @@
+class Solution {
+    public int[] searchRange(int[] nums, int target) 
+    {
+       int[] result = {-1,-1};
+		int firstindex = binsearch(nums, target);
+		if (firstindex == nums.length || nums[firstindex] != target) 
+			return result;
+        result[0]=firstindex;
+        result[1] = binsearch(nums,target+1)-1;
+        return result;
+	}
+	private static int binsearch(int[] nums, int target) 
+    {
+		int left = 0, right = nums.length;
+		while (left < right) {
+			int mid = (left + right)/2;
+			if (nums[mid] < target) {
+				left = mid + 1;
+			} else {
+				right = mid;
+			}
+		}
+		return left;
+	}
+    
+}
