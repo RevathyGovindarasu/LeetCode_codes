@@ -1,0 +1,74 @@
+class Solution {
+    public int getMinSwaps(String num, int k) {
+        char[] target = num.toCharArray();
+        for(int i=0;i<k;i++)
+        {
+            nextPermutation(target);
+        }
+        char[] nums = num.toCharArray();
+        return minswaps(nums,target,nums.length);
+    }
+    
+    public void reverse(char[] nums,int i)
+    {
+        int j=nums.length-1;
+        while(i<j){
+            swap(nums,i,j);
+            i++;
+            j--;
+        }
+    }
+    
+    public void swap(char[] nums, int i,int j)
+    {
+        char temp = nums[i];
+        nums[i] = nums[j];
+        nums[j] = temp;
+    }
+    
+    public void nextPermutation(char[] nums)
+    {
+        if(nums.length==0) return;
+        int len=nums.length;
+        for(int i=len-1;i>=1;i--)
+        {
+            if(nums[i]>nums[i-1])
+            {
+                reverse(nums,i);
+                for(int j=i;j<len;j++)
+                {
+                    if(nums[j]>nums[i-1]){
+                        swap(nums,i-1,j);
+                        return;
+                    }
+                }
+            }
+        }
+        reverse(nums,0);
+    }
+    
+    public int minswaps(char[] nums, char[] target, int size){
+        int j=0,swaps=0;
+        for(int i=0;i<size;i++)
+        {
+            j=i;
+            while(nums[j]!=target[i]) j++;
+            while(i<j)
+            {
+                swap(nums,j,j-1);
+                j--;
+                swaps++;
+            }
+            
+        }
+        return swaps;
+    }
+    
+    
+    
+    
+    
+    
+    
+    
+}
