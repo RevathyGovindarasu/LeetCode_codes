@@ -1,0 +1,18 @@
+class Solution {
+    public int maxScore(int[] cardPoints, int k) {
+       int minSubarrayLength = cardPoints.length - k, minSum = Integer.MAX_VALUE;        
+        int left = 0, currentSum = 0, total = 0;        
+        for (int i=0;i < cardPoints.length;i++) 
+        {
+            total += cardPoints[i];
+            currentSum += cardPoints[i];
+            if (i - left + 1 == minSubarrayLength) 
+            {
+                minSum = Math.min(minSum, currentSum);
+                currentSum -= cardPoints[left];
+                left++;
+            }
+        }        
+        return total - (minSum == Integer.MAX_VALUE ? 0 : minSum);  
+    }
+}
