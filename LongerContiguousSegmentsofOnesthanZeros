@@ -1,0 +1,22 @@
+class Solution {
+    public boolean checkZeroOnes(String s) {
+      int countOne=0, countZeros=0,MaxOnes=0, Maxzeros=0;
+        for(char c:s.toCharArray())
+        {
+            if(c=='1')
+            {
+                countOne++;
+                countZeros=0;
+            }
+            if(c=='0')
+            {
+                countOne=0;
+                countZeros++;
+            }
+            MaxOnes = Math.max(MaxOnes,countOne);
+             Maxzeros = Math.max(Maxzeros,countZeros);
+        }
+        return MaxOnes>Maxzeros;
+    }
+}
+//O(n)
