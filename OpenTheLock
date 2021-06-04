@@ -1,0 +1,35 @@
+class Solution {
+    public int openLock(String[] deadends, String target) {
+        Set<String> deadSet = new HashSet<>(Arrays.asList(deadends));
+        if (deadSet.contains("0000")) return -1;
+        Queue<String> queue = new LinkedList<>();
+        queue.add("0000");
+        int steps = 0;
+        while (!queue.isEmpty()) {
+            int size=queue.size();
+            for (int i=0; i<size;i++) {
+                String curr = queue.poll();
+                if (curr.equals(target)) return steps;
+                for (String nei : neighbors(curr)) {
+                    if (deadSet.contains(nei)) continue;
+                    deadSet.add(nei);
+                    queue.offer(nei);
+                }
+            }
+            ++steps;
+        }
+        return -1;
+    }
+    List<String> neighbors(String code) {
+        List<String> result = new ArrayList<>();
+        for (int i = 0; i < 4; i++) {
+            int x = code.charAt(i) - '0';
+            for (int diff = -1; diff <= 1; diff += 2) {
+                int y = (x + diff + 10) % 10;
+                result.add(code.substring(0, i) + ("" + y) + code.substring(i + 1));
+            }
+        }
+   
+        return result;
+    }
+}
