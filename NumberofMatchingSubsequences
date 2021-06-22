@@ -1,0 +1,42 @@
+class Solution {
+    public int numMatchingSubseq(String s, String[] words) {
+        int count=0;
+        HashSet<String>subs=new HashSet<>();
+        HashSet<String>not_subs=new HashSet<>();
+        
+        for(String w:words)
+        {
+            if(subs.contains(w))
+            {
+                count+=1;
+            }
+            else if(not_subs.contains(w)) continue;
+        
+        else
+        {
+            if(isSubs(s,w))
+            {
+                count++;
+                subs.add(w);
+            }
+            else
+            {
+                not_subs.add(w);
+            }
+        }
+        }
+        return count;
+    }
+    
+    private boolean isSubs(String s, String w)
+    {
+        int index=0;
+        for(char c:w.toCharArray())
+        {
+            index = s.indexOf(c,index);
+            if(index==-1) return false;
+            index++;
+        }
+        return true;
+    }
+}
