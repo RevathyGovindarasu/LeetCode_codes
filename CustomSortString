@@ -1,0 +1,30 @@
+class Solution {
+    public String customSortString(String order, String str) {
+      StringBuilder ans = new StringBuilder();
+        
+        //count occurance in str
+        int[] count = new int[26];
+        
+        for(char c:str.toCharArray())
+        {
+            count[c-'a']++;
+        }
+            
+        for(char c:order.toCharArray())
+        {
+            for(int i=0;i<count[c-'a'];i++)
+            {
+                ans.append(c);
+            }
+            count[c-'a']=0;
+        }
+        
+        for(char c='a';c<='z';c++)
+        {
+            for (int i=0;i<count[c-'a'];i++)
+                ans.append(c);
+        }
+        
+        return ans.toString();
+    }
+}
