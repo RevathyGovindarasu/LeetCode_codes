@@ -1,0 +1,17 @@
+class Solution {
+    public TreeNode pruneTree(TreeNode root) {
+        return prune(root) ? root : null;
+    }
+
+    public boolean prune(TreeNode node) 
+    {
+        if (node == null) return false;
+        
+        boolean left = prune(node.left);
+        boolean right = prune(node.right);
+
+        if (!left) node.left = null;
+        if (!right) node.right = null;
+        return node.val == 1 || left || right;
+    }
+}
