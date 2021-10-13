@@ -1,0 +1,16 @@
+class Solution {
+    public TreeNode bstFromPreorder(int[] preorder) {
+        TreeNode root=null;
+        for(int n:preorder)
+            root=helper(root,n);
+        return root;
+    }
+    
+    private TreeNode helper(TreeNode root, int value)
+    {
+        if(root==null) return new TreeNode(value);
+        else if(root.val > value) root.left=helper(root.left,value);
+        else root.right = helper(root.right,value);
+        return root;
+    }
+}
