@@ -1,0 +1,24 @@
+class Solution {
+    public int[] singleNumber(int[] nums) {
+        int xxory = 0;
+        for(int n:nums)
+        {
+            xxory^=n;
+        }
+        xxory&=-xxory;
+        
+        //1.find 2's complement - flip all the bits and add 1
+        //2. & with same number = 110 = 6, after performing = 010
+        
+        int[] result = {0,0};
+        for(int n:nums)
+        {
+            if((n & xxory) == 0)
+                result[0]^=n;
+            else
+                result[1]^=n;
+        }
+       
+        return result;
+    }
+}
