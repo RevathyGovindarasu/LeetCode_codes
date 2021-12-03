@@ -1,0 +1,12 @@
+class Solution {
+    public int maxProduct(int[] nums) {
+        int result = nums[0], l=0,r=0;
+        for(int i=0;i<nums.length;i++)
+        {
+          l = (l==0?1: l)*nums[i];  
+          r = (r==0?1:r) * nums[nums.length-1-i];
+          result = Math.max(result,Math.max(l,r));
+        }
+        return result;
+    }
+}
