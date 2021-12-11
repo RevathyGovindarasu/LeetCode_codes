@@ -1,0 +1,26 @@
+class Solution {
+    public int nthMagicalNumber(int n, int a, int b) {
+        int MOD = 1_000_000_007;
+        int lcm=(a*b)/gcd(a,b);
+        
+        long low=0;
+        long high=(long)n*Math.min(a,b);
+        
+        while(low<high)
+        {
+            long mid=low+(high-low)/2;
+            
+            if((mid/a+mid/b-mid/lcm)<n)
+                low=mid+1;
+            else
+                high=mid;
+        }
+        return (int)(low%MOD);
+    }
+    
+    public int gcd(int x,int y)
+    {
+        if(x==0) return y;
+        return gcd(y%x,x);
+    }
+}
