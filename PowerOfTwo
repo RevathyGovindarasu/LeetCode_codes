@@ -1,0 +1,27 @@
+class Solution {
+    public boolean isPowerOfTwo(int n) {
+       if(n<=0) return false;
+        while(n%2==0) n=n/2;
+        return n==1;
+    }
+}
+
+//method 2
+
+class Solution {
+    public boolean isPowerOfTwo(int n) {
+        //method 2 bit mainpulation
+        
+         return ((n & (n-1))==0 && n>0);
+    }
+}
+
+//method 3
+
+class Solution {
+    public boolean isPowerOfTwo(int n) {
+        
+       if(n<=0) return false;      
+         return (1073741824 % n == 0);
+    }
+}
